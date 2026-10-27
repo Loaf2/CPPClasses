@@ -1,6 +1,7 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
+#include <cmath>
 
 template <class T>
 class PublicPerson
@@ -16,10 +17,28 @@ class PublicPerson
        };
 };
 
+class PublicDog
+{
+  public:
+      virtual void eatLeaf() {
+          std::cout << "I eat leaves!" << std::endl;
+      };
+};
+
+class PrivateDog : public PublicDog
+{
+    public:
+        void eatLeaf() {
+            std::cout << "I eat leaves!" << std::endl;
+        };
+};
+
 int main()
 {
   std::srand(std::time({}));
   PublicPerson<std::string> Person;
+  PrivateDog DogOne;
+  DogOne.eatLeaf();
 
   Person.Name = "Daniel";
   Person.Foods = "Banana, Apple";
@@ -41,13 +60,15 @@ int main()
   unsigned int num1, num2;
   std::cin >> num1 >> num2;
   std::cout << "Sum is: " << num1 + num2 << " ";
-  for (unsigned int i = 0; i < 10; i++)
+  for (unsigned int i = 1; i < 11; i++)
   {
-      for (unsigned int j = 0; j < 10; j++)
+      for (unsigned int j = 1; j < 11; j++)
       {
-          std::cout << "i is: " << i << " ";
-          std::cout << "j is: " << j << " ";
-          std::cout << "i + j " << i + j << " ";
+          std::cout << "Sum of I and J is: " << i + j << std::endl;
+          std::cout << "Subtraction of I and J is: " << i - j << std::endl;
+          std::cout << "Multiplication of I and J is: " << i * j << std::endl;
+          std::cout << "Division of I and J is: " << i / j << std::endl;
+          std::cout << "Power of I and J is: " << std::pow(i, j) << std::endl;
       };
   };
 };
