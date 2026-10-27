@@ -3,18 +3,28 @@
 #include <cstdlib>
 #include <cmath>
 
-template <class T>
 class PublicPerson
 {
     public:
-       T Name;
-       T Foods;
-       bool returnTrueOrFalse() const {
+       std::string Name;
+       std::string Foods;
+       virtual bool returnTrueOrFalse() const {
            return std::rand() % 2;
        };
-       int returnSumOfTwoNums(int numA, int numB) const {
+       virtual int returnSumOfTwoNums(int numA, int numB) const {
          return numA + numB;
        };
+       virtual int returnSubtractionOfTwoNums(int numA, int numB) const {
+         return numA - numB;
+       };
+};
+
+class PrivatePerson : public PublicPerson
+{
+    public:
+        int returnSubtractionOfTwoNums(int numA, int numB) const {
+          return numA - numB;
+        };
 };
 
 class PublicDog
@@ -36,12 +46,20 @@ class PrivateDog : public PublicDog
 int main()
 {
   std::srand(std::time({}));
-  PublicPerson<std::string> Person;
-  PrivateDog DogOne;
-  DogOne.eatLeaf();
+  PublicPerson Person;
+  PrivatePerson PrivatePersonObject;
+  PublicDog DogOne;
+  PrivateDog DogTwo;
+  DogTwo.eatLeaf();
 
   Person.Name = "Daniel";
   Person.Foods = "Banana, Apple";
+
+  std::cout << "Subtraction of two nums: " << std::endl;
+  int subNumA, subNumB;
+  std::cout << "Input two nums to subtract: " << std::endl;
+  std::cin >> subNumA >> subNumB;
+  std::cout << PrivatePersonObject.returnSubtractionOfTwoNums(subNumA, subNumB) << std::endl;
 
   bool trueOrFalse = Person.returnTrueOrFalse();
   if (trueOrFalse == true)
@@ -51,8 +69,7 @@ int main()
   {
       std::cout << "Returned false" << std::endl;
   };
-  unsigned int numA = 2;
-  unsigned int numB = 4;
+  unsigned int numA = 2, numB = 4;
   std::cout << "Sum of " << numA << " and " << numB << " is " << Person.returnSumOfTwoNums(numA, numB) << std::endl;
   std::cout << "Persons name: " << Person.Name << std::endl;
   std::cout << "Persons foods: " << Person.Foods << std::endl;
