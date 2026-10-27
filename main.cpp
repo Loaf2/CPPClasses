@@ -11,6 +11,9 @@ class PublicPerson
        bool returnTrueOrFalse() const {
            return std::rand() % 2;
        };
+       int returnSumOfTwoNums(int numA, int numB) const {
+         return numA + numB;
+       };
 };
 
 int main()
@@ -24,11 +27,14 @@ int main()
   bool trueOrFalse = Person.returnTrueOrFalse();
   if (trueOrFalse == true)
   {
-      std::cout << "returned true" << std::endl;
+      std::cout << "Returned true" << std::endl;
   } else
   {
-      std::cout << "returned false" << std::endl;
+      std::cout << "Returned false" << std::endl;
   };
+  unsigned int numA = 2;
+  unsigned int numB = 4;
+  std::cout << "Sum of " << numA << " and " << numB << " is " << Person.returnSumOfTwoNums(numA, numB) << std::endl;
   std::cout << "Persons name: " << Person.Name << std::endl;
   std::cout << "Persons foods: " << Person.Foods << std::endl;
   std::cout << "Input two numbers to sum." << std::endl;
