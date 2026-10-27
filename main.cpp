@@ -1,7 +1,6 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
-#include <vector>
 
 template <class T>
 class PublicPerson
